@@ -1,0 +1,27 @@
+@startuml
+object User
+object UI
+object API
+object Auth
+object Store
+object Analysis
+object Vision
+object Nutrition
+object NutAPI
+object Reco
+object DB
+
+User -- UI : (1) Upload photo
+UI -- API : (2) POST /meals/photo
+API -- Auth : (3) validateToken
+API -- Store : (4) store image
+API -- Analysis : (5) submitImage
+Analysis -- Vision : (5.1) analyze image
+Analysis -- Nutrition : (5.2) compute nutrition
+Nutrition -- NutAPI : (5.2.1) lookup nutrition
+API -- DB : (6) load medical+goals
+API -- Reco : (7) generate recommendations
+API -- DB : (8) save meal log
+API -- UI : (9) return totals+recos
+
+@enduml
