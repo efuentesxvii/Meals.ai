@@ -22,7 +22,7 @@ jobs:
             -v "${{ github.workspace }}:/workspace" \
             -w /workspace \
             plantuml/plantuml:jetty \
-            sh -c 'find . -type f -name "*.puml" -print0 | xargs -0 -n1 plantuml -tsvg -o rendered'
+            sh -c 'find . -type f -name "*.puml" -print0 | xargs -0 -n1 plantuml -tpng -o rendered'
 
       - name: Commit rendered images
         uses: EndBug/add-and-commit@v9
