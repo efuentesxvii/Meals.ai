@@ -1,0 +1,33 @@
+@startuml
+start
+
+:User selects "Scan Meal";
+:Capture/Upload meal photo;
+
+:Validate session/token;
+if (Authenticated?) then (yes)
+  :Store photo in object storage;
+  :Send image to Vision AI;
+  :Receive detected ingredients + confidence;
+
+  :Get nutrition facts for ingredients;
+  :Compute totals (calories/macros);
+
+  :Load user medical constraints & goals;
+  :Generate recommendations\n(substitutions/portion/warnings);
+
+  if (User confirms save?) then (yes)
+    :Create meal log entry;
+    :Attach analysis + nutrition + recommendations;
+    :Persist to SQL database;
+    :Show success + updated history;
+  else (no)
+    :Show recommendations only;
+  endif
+
+else (no)
+  :Prompt login;
+endif
+
+stop
+@enduml
