@@ -1,0 +1,17 @@
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+node_modules/
+build/
+dist/
+out/
+.gradle/
+**/build/
+
+*.zip
+*.rar
+*.7z
+*.mp4
+*.mov

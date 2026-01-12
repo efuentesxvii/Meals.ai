@@ -1,0 +1,49 @@
+@startuml component-diagram
+skinparam componentStyle rectangle
+
+component "Mobile App\n(iOS/Android)" as Mobile
+component "Web App" as Web
+component "API Gateway / REST API" as API
+
+component "Auth Service" as Auth
+component "User/Profile Service" as Profile
+component "Meal Log Service" as MealLog
+component "Meal Analysis Service" as Analysis
+component "Nutrition Service" as Nutrition
+component "Recommendation Service" as Reco
+component "Recipe Service" as Recipe
+component "Grocery Service" as Grocery
+
+database "SQL Database" as SQL
+component "Object Storage\n(Meal Photos)" as Storage
+
+component "AI Vision Provider" as VisionExt
+component "External Nutrition API" as NutExt
+
+Mobile --> API
+Web --> API
+
+API --> Auth
+API --> Profile
+API --> MealLog
+API --> Analysis
+API --> Nutrition
+API --> Reco
+API --> Recipe
+API --> Grocery
+
+Auth --> SQL
+Profile --> SQL
+MealLog --> SQL
+Recipe --> SQL
+Grocery --> SQL
+Analysis --> SQL
+Analysis --> Storage
+
+Analysis --> VisionExt
+Nutrition --> NutExt
+
+Reco --> SQL
+Reco --> Nutrition
+
+@enduml
