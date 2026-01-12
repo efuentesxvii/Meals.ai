@@ -1,0 +1,34 @@
+@startuml dfd-level-0-context
+left to right direction
+skinparam shadowing false
+skinparam linetype ortho
+skinparam defaultFontSize 12
+
+skinparam nodesep 280
+skinparam ranksep 220
+
+rectangle "E1\nUser" as User
+rectangle "E3\nAI Vision\nService" as Vision
+rectangle "E4\nNutrition\nData API" as Nutrition
+rectangle "E2\nAdmin" as Admin
+
+circle "P0\nMeals.ai\nSystem" as P0
+
+User   -[hidden]-> P0
+P0     -[hidden]-> Vision
+Vision -[hidden]-> Nutrition
+P0     -[hidden]down-> Admin
+
+User -right-> P0 : Inputs\n- Credentials\n- Profile/Medical\n- Meal (photo/manual)\n- Preferences
+P0 -left-> User : Outputs\n- Nutrition summary\n- Recommendations\n- History/Trends\n- Grocery list
+
+P0 -right-> Vision : Meal image
+Vision -left-> P0 : Detected ingredients\n+ confidence
+
+P0 -right-> Nutrition : Ingredient query\n(name + portion)
+Nutrition -left-> P0 : Nutrition facts\n(per ingredient + totals)
+
+Admin -up-> P0 : Admin actions\n(user/content mgmt)
+P0 -down-> Admin : Reports/logs\n& metrics
+
+@enduml
