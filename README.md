@@ -20,10 +20,10 @@
 ![Component Diagram](docs/uml/component-diagram.png)
 
 ### DFD - Level 0 Diagram
-![DFD Level 0 Diagram](docs/uml/dfd-level-0-context.png)
+![DFD Level 0 Diagram](docs/dfd/dfd-level-0-context.png)
 
 ### DFD - Level 1 Diagram
-![DFD Level 1 Diagram](docs/uml/dfd-level-1.png)
+![DFD Level 1 Diagram](docs/dfd/dfd-level-1.png)
 
 ### DFD - Level 2 Diagram
-![DFD Level 2 Diagram](docs/uml/dfd-level-2-meal-analysis.png)
+![DFD Level 2 Diagram](docs/dfd/dfd-level-2-meal-analysis.png)
