@@ -1,0 +1,54 @@
+@startuml communication-diagram1
+!pragma teoz true
+title Meals.AI - Communication Diagram (Part 1: Upload → Nutrition)
+
+skinparam shadowing false
+skinparam linetype ortho
+skinparam defaultTextAlignment center
+skinparam SequenceMessageAlign center
+skinparam ParticipantPadding 18
+skinparam BoxPadding 10
+skinparam MaxMessageSize 80
+
+autonumber 1
+
+actor User as U
+participant "Mobile/Web UI" as UI
+participant "API Gateway" as GW
+participant "Auth Service" as AUTH
+participant "Meal Analysis Service" as MAS
+participant "AI Vision Provider" as VISION
+participant "Nutrition Service" as NUT
+participant "External Nutrition API" as EXT
+collections "Object Storage" as OBJ
+
+group Upload meal photo
+  U  -> UI : Upload meal photo
+  UI -> GW : POST /meals/photo\n(token, image)
+end
+
+group Authenticate
+  GW -> AUTH : validateToken(token)
+  AUTH --> GW : ok
+end
+
+group Store image
+  GW -> OBJ : putObject(image)
+  OBJ --> GW : imageUrl
+end
+
+group Submit + Vision analysis
+  GW -> MAS : submitImage(imageUrl)
+  MAS -> VISION : analyze(imageUrl)
+  VISION --> MAS : ingredients + confidence
+end
+
+group Nutrition computation
+  MAS -> NUT : computeNutrition(ingredients)
+  NUT -> EXT : lookup(ingredients)
+  EXT --> NUT : nutrition data
+  NUT --> MAS : totals
+end
+
+@enduml
+

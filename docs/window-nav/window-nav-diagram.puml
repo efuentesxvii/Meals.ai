@@ -1,0 +1,38 @@
+@startuml window-nav-diagram
+top to bottom direction
+skinparam rectangle {
+  BackgroundColor #F4CCCC
+  BorderColor #B85450
+}
+
+rectangle "<<window>>\nMain Menu" as MainMenu
+
+rectangle "<<window>>\nMeal Capture Menu" as MenuA
+rectangle "<<window>>\nMeal History Menu" as MenuB
+rectangle "<<window>>\nRecommendations Menu" as MenuC
+
+rectangle "<<form>>\nCapture Meal Photo" as FormPhoto
+rectangle "<<form>>\nManual Meal Entry" as FormManual
+rectangle "<<report>>\nNutrition Analysis Report" as ReportNutrition
+
+rectangle "<<form>>\nView Meal Log" as FormLog
+rectangle "<<report>>\nMeal History Report" as ReportHistory
+
+rectangle "<<form>>\nView Recommendations" as FormRecs
+rectangle "<<report>>\nHealth Optimization Report" as ReportHealth
+
+MainMenu --> MenuA : Select Capture Meal
+MainMenu --> MenuB : Select Meal History
+MainMenu --> MenuC : Select Recommendations
+
+MenuA --> FormPhoto : Take Photo
+MenuA --> FormManual : Manual Entry
+MenuA --> ReportNutrition : View Analysis
+
+MenuB --> FormLog : View Meals
+MenuB --> ReportHistory : Generate Report
+
+MenuC --> FormRecs : View Suggestions
+MenuC --> ReportHealth : View Health Report
+
+@enduml

@@ -1,0 +1,44 @@
+@startuml communication-diagram2
+!pragma teoz true
+title Meals.AI - Communication Diagram (Part 2: Recos → Save → Results)
+
+skinparam shadowing false
+skinparam linetype ortho
+skinparam defaultTextAlignment center
+skinparam SequenceMessageAlign center
+skinparam ParticipantPadding 18
+skinparam BoxPadding 10
+skinparam MaxMessageSize 80
+
+autonumber 20
+
+actor User as U
+participant "Mobile/Web UI" as UI
+participant "API Gateway" as GW
+participant "Meal Analysis Service" as MAS
+participant "Recommendation Service" as REC
+database "SQL DB" as DB
+
+group Fetch personalization data
+  MAS -> DB : getUserProfile(userId)
+  DB --> MAS : medical + goals
+end
+
+group Generate recommendations
+  MAS -> REC : generate(ingredients,\n totals, medical, goals)
+  REC --> MAS : recommendations
+end
+
+group Save meal log
+  MAS -> DB : saveMealLog(imageUrl,\n totals, recommendations)
+  DB --> MAS : mealLogId
+end
+
+group Return to user
+  MAS --> GW : mealLogId, totals, recommendations
+  GW --> UI : 200 OK(mealLogId,\n totals, recommendations)
+  UI --> U  : Display results
+end
+
+@enduml
+
