@@ -1,0 +1,206 @@
+@startuml
+skinparam style strictuml
+skinparam classAttributeIconSize 0
+hide empty methods
+
+' ===== Enumerations =====
+enum MealType {
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
+}
+
+enum AnalysisStatus {
+  PENDING
+  COMPLETE
+  FAILED
+}
+
+enum RecommendationType {
+  SUBSTITUTION
+  PORTION
+  WARNING
+  GENERAL
+}
+
+enum AllergySeverity {
+  MILD
+  MODERATE
+  SEVERE
+}
+
+package "DomainModel" {
+
+  class User {
+    +userId: UUID
+    +email: String
+    +passwordHash: String
+    +createdAt: DateTime
+  }
+
+  class UserProfile {
+    +profileId: UUID
+    +name: String
+    +dob: Date
+    +heightCm: Int
+    +weightKg: Float
+  }
+
+  class MedicalProfile {
+    +medicalProfileId: UUID
+    +diabetes: Boolean
+    +hypertension: Boolean
+    +highCholesterol: Boolean
+    +notes: String
+  }
+
+  class Allergy {
+    +allergyId: UUID
+    +name: String
+    +severity: AllergySeverity
+  }
+
+  class DietaryGoal {
+    +goalId: UUID
+    +goalType: String
+    +dietStyle: String
+    +targetCalories: Int
+    +startDate: Date
+  }
+
+  ' --- Meal Logging (Generalization) ---
+  abstract class MealEntry {
+    +mealLogId: UUID
+    +loggedAt: DateTime
+    +mealType: MealType
+    +notes: String
+  }
+
+  class PhotoMealEntry {
+    +source: String
+  }
+
+  class ManualMealEntry {
+    +source: String
+  }
+
+  MealEntry <|-- PhotoMealEntry
+  MealEntry <|-- ManualMealEntry
+
+  class MealImage {
+    +imageId: UUID
+    +uri: String
+    +uploadedAt: DateTime
+    +contentType: String
+    +byteSize: Long
+  }
+
+  ' --- Ingredients (Generalization) ---
+  abstract class Ingredient {
+    +ingredientId: UUID
+    +name: String
+    +quantity: Float
+    +unit: String
+  }
+
+  class DetectedIngredient {
+    +confidence: Float
+    +normalizedName: String
+  }
+
+  class ManualIngredient
+  class RecipeIngredient
+
+  Ingredient <|-- DetectedIngredient
+  Ingredient <|-- ManualIngredient
+  Ingredient <|-- RecipeIngredient
+
+  ' --- Analysis + Nutrition ---
+  class MealAnalysis {
+    +analysisId: UUID
+    +createdAt: DateTime
+    +status: AnalysisStatus
+    +overallConfidence: Float
+  }
+
+  class NutritionTotals {
+    +nutritionId: UUID
+    +calories: Int
+    +proteinG: Float
+    +carbsG: Float
+    +fatG: Float
+    +sodiumMg: Float
+    +sugarG: Float
+  }
+
+  class IngredientNutrition {
+    +ingredientNutritionId: UUID
+    +servingSize: String
+    +calories: Int
+    +proteinG: Float
+    +carbsG: Float
+    +fatG: Float
+    +sodiumMg: Float
+    +sugarG: Float
+  }
+
+  class Recommendation {
+    +recommendationId: UUID
+    +type: RecommendationType
+    +message: String
+    +priority: Int
+  }
+
+  ' --- Recipes + Grocery ---
+  class Recipe {
+    +recipeId: UUID
+    +title: String
+    +instructions: String
+    +createdAt: DateTime
+  }
+
+  class GroceryList {
+    +groceryListId: UUID
+    +createdAt: DateTime
+    +title: String
+  }
+
+  class GroceryItem {
+    +groceryItemId: UUID
+    +name: String
+    +quantity: Float
+    +unit: String
+    +isChecked: Boolean
+  }
+
+  ' ===== Associations / Multiplicities / Whole-Part =====
+
+  User *-- "0..1" UserProfile : profile
+  User *-- "0..1" MedicalProfile : medical
+
+  MedicalProfile *-- "0..*" Allergy : allergies
+  User *-- "0..*" DietaryGoal : goals
+
+  User *-- "0..*" MealEntry : entries
+
+  PhotoMealEntry *-- "1" MealImage : image
+  ManualMealEntry *-- "1..*" ManualIngredient : ingredients
+
+  MealEntry *-- "0..1" MealAnalysis : analysis
+
+  MealAnalysis *-- "0..*" DetectedIngredient : detected
+  MealAnalysis *-- "0..*" IngredientNutrition : nutritionItems
+  MealAnalysis *-- "0..1" NutritionTotals : totals
+  MealAnalysis *-- "0..*" Recommendation : recommendations
+
+  IngredientNutrition "1" --> "1" Ingredient : for
+
+  User *-- "0..*" Recipe : recipes
+  Recipe *-- "1..*" RecipeIngredient : ingredients
+
+  User *-- "0..*" GroceryList : lists
+  GroceryList *-- "1..*" GroceryItem : items
+}
+
+@enduml

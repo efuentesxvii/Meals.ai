@@ -1,0 +1,49 @@
+@startuml use-case-1
+left to right direction
+skinparam style strictuml
+
+actor "User" as U
+
+rectangle "Meals.ai" {
+
+  usecase "Log Meal" as LM
+  usecase "Authenticate User" as AUTH
+  usecase "Choose Entry Method" as CHOOSE
+  usecase "Enter Meal Details" as DETAILS
+  usecase "Validate Inputs" as VALIDATE
+  usecase "Confirm Save" as CONFIRM
+  usecase "Save Meal Log" as SAVE
+  usecase "View Meal History" as HISTORY
+
+  usecase "Log Meal Manually" as MANUAL
+  usecase "Enter Ingredients and Portions" as ING
+  usecase "Upload Meal Photo" as PHOTO
+
+  usecase "Analyze Meal" as ANALYZE
+  usecase "Generate Nutrition Facts" as NUTRITION
+  usecase "Get Suggestions" as SUGGEST
+
+  U --> LM
+
+  LM ..> AUTH : <<include>>
+  LM ..> CHOOSE : <<include>>
+  LM ..> DETAILS : <<include>>
+  LM ..> VALIDATE : <<include>>
+  LM ..> CONFIRM : <<include>>
+  CONFIRM ..> SAVE : <<include>>
+
+  CHOOSE ..> MANUAL : <<include>>
+  CHOOSE ..> PHOTO : <<include>>
+
+  MANUAL ..> ING : <<include>>
+  MANUAL ..> NUTRITION : <<include>>
+  MANUAL ..> SUGGEST : <<extend>>
+
+  PHOTO ..> ANALYZE : <<include>>
+  PHOTO ..> NUTRITION : <<include>>
+  PHOTO ..> SUGGEST : <<extend>>
+
+  SAVE ..> HISTORY : <<extend>>
+}
+
+@enduml

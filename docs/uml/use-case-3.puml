@@ -1,0 +1,52 @@
+@startuml use-case-3
+left to right direction
+skinparam style strictuml
+
+actor "User" as U
+actor "AI Vision Provider" as VISION
+actor "Object Storage" as STORE
+
+rectangle "Meals.ai" {
+
+  usecase "Analyze Meal" as AM
+  usecase "Authenticate User" as AUTH
+  usecase "Upload Meal Photo" as UPLOAD
+  usecase "Validate Image" as VALIDATE
+  usecase "Preprocess Image" as PREP
+  usecase "Store Image" as STOREIMG
+  usecase "Send Image to Vision AI" as SEND
+  usecase "Receive Ingredient Detections" as RECV
+  usecase "Parse Results" as PARSE
+  usecase "Normalize Ingredients" as NORMALIZE
+  usecase "Store Analysis Results" as PERSIST
+  usecase "Display Analysis Summary" as DISPLAY
+
+  usecase "Retry Analysis" as RETRY
+  usecase "Handle Low Confidence" as LOWCONF
+  usecase "User Corrects Ingredients" as CORRECT
+
+  U --> AM
+
+  AM ..> AUTH : <<include>>
+  AM ..> UPLOAD : <<include>>
+  AM ..> VALIDATE : <<include>>
+  AM ..> PREP : <<include>>
+  AM ..> STOREIMG : <<include>>
+  AM ..> SEND : <<include>>
+  AM ..> RECV : <<include>>
+  AM ..> PARSE : <<include>>
+  AM ..> NORMALIZE : <<include>>
+  AM ..> PERSIST : <<include>>
+  AM ..> DISPLAY : <<include>>
+
+  STOREIMG --> STORE
+  SEND --> VISION
+  RECV <-- VISION
+
+  SEND ..> RETRY : <<extend>>
+  RECV ..> LOWCONF : <<extend>>
+  LOWCONF ..> CORRECT : <<extend>>
+  U --> CORRECT
+}
+
+@enduml

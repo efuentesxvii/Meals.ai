@@ -1,0 +1,44 @@
+@startuml use-case-2
+left to right direction
+skinparam style strictuml
+
+actor "User" as U
+actor "External Nutrition API" as API
+
+rectangle "Meals.ai" {
+
+  usecase "Generate Nutrition Facts" as GNF
+  usecase "Authenticate User" as AUTH
+  usecase "Validate Ingredients" as VALIDATE
+  usecase "Normalize Ingredients" as NORMALIZE
+  usecase "Lookup Nutrition Data" as LOOKUP
+  usecase "Compute Totals" as TOTALS
+  usecase "Display Nutrition Summary" as DISPLAY
+
+  usecase "Handle Missing Data" as MISSING
+  usecase "Resolve Ambiguous Ingredient" as AMBIG
+  usecase "Adjust Serving Size" as SERVING
+
+  usecase "Save Nutrition to Meal Log" as SAVE
+  usecase "Export Nutrition Summary" as EXPORT
+
+  U --> GNF
+
+  GNF ..> AUTH : <<include>>
+  GNF ..> VALIDATE : <<include>>
+  GNF ..> NORMALIZE : <<include>>
+  GNF ..> LOOKUP : <<include>>
+  GNF ..> TOTALS : <<include>>
+  GNF ..> DISPLAY : <<include>>
+
+  LOOKUP --> API
+
+  LOOKUP ..> MISSING : <<extend>>
+  NORMALIZE ..> AMBIG : <<extend>>
+  TOTALS ..> SERVING : <<extend>>
+
+  GNF ..> SAVE : <<extend>>
+  GNF ..> EXPORT : <<extend>>
+}
+
+@enduml

@@ -1,0 +1,162 @@
+@startuml class-diagram2
+
+skinparam style strictuml
+top to bottom direction
+skinparam classAttributeIconSize 0
+hide empty attributes
+
+package "API Layer" {
+  class MealController <<controller>> {
+    +postMealPhoto(token: String, image: Blob): MealResponseDTO
+    +postManualMeal(token: String, payload: ManualMealDTO): MealResponseDTO
+    +getMealHistory(token: String): List<MealSummaryDTO>
+  }
+
+  class AuthController <<controller>> {
+    +register(email: String, password: String): void
+    +login(email: String, password: String): TokenDTO
+  }
+
+  class DTOs <<folder>> {
+  }
+}
+
+package "Application Services" {
+  class AuthService <<service>> {
+    +register(email: String, password: String): User
+    +login(email: String, password: String): String
+    +validateToken(token: String): UUID
+  }
+
+  class MealOrchestrationService <<service>> {
+    +processPhotoMeal(userId: UUID, image: Blob): MealEntry
+    +processManualMeal(userId: UUID, dto: ManualMealDTO): MealEntry
+    +getHistory(userId: UUID): List<MealEntry>
+  }
+
+  class MealAnalysisService <<service>> {
+    +analyze(imageUri: String): MealAnalysis
+    +normalize(detections: List<DetectedIngredient>): List<DetectedIngredient>
+  }
+
+  class NutritionService <<service>> {
+    +lookup(ingredientName: String): IngredientNutrition
+    +computeTotals(items: List<IngredientNutrition>): NutritionTotals
+  }
+
+  class RecommendationService <<service>> {
+    +generate(med: MedicalProfile, goals: List<DietaryGoal>, totals: NutritionTotals, items: List<IngredientNutrition>): List<Recommendation>
+  }
+
+  class RecipeService <<service>> {
+    +save(userId: UUID, recipe: Recipe): Recipe
+    +list(userId: UUID): List<Recipe>
+  }
+
+  class GroceryService <<service>> {
+    +generateFromRecipes(userId: UUID, recipes: List<Recipe>): GroceryList
+  }
+}
+
+package "Persistence" {
+  interface UserRepository <<repository>> {
+    +save(user: User): void
+    +findByEmail(email: String): User
+    +findById(userId: UUID): User
+  }
+
+  interface MealEntryRepository <<repository>> {
+    +save(entry: MealEntry): void
+    +findByUser(userId: UUID): List<MealEntry>
+  }
+
+  interface MealAnalysisRepository <<repository>> {
+    +save(analysis: MealAnalysis): void
+    +findByMeal(mealLogId: UUID): MealAnalysis
+  }
+
+  interface RecipeRepository <<repository>> {
+    +save(recipe: Recipe): void
+    +findByUser(userId: UUID): List<Recipe>
+  }
+
+  interface GroceryListRepository <<repository>> {
+    +save(list: GroceryList): void
+    +findByUser(userId: UUID): List<GroceryList>
+  }
+}
+
+package "Integrations" {
+  interface VisionAIClient <<external>> {
+    +detectIngredients(imageUri: String): List<DetectedIngredient>
+  }
+
+  interface ExternalNutritionApiClient <<external>> {
+    +lookup(ingredientName: String): IngredientNutrition
+  }
+
+  interface ObjectStorageClient <<external>> {
+    +putObject(bytes: Blob, contentType: String): String
+    +getObject(uri: String): Blob
+  }
+
+  interface JwtProvider <<security>> {
+    +issueToken(userId: UUID): String
+    +verify(token: String): UUID
+  }
+}
+
+package "Domain (Referenced)" {
+  class User
+  class UserProfile
+  class MedicalProfile
+  class DietaryGoal
+  abstract class MealEntry
+  class MealAnalysis
+  class DetectedIngredient
+  class IngredientNutrition
+  class NutritionTotals
+  class Recommendation
+  class Recipe
+  class GroceryList
+}
+
+' ===== Controller -> Service dependencies =====
+MealController ..> AuthService : validateToken()
+MealController ..> MealOrchestrationService
+AuthController ..> AuthService
+
+' ===== Service -> Integration dependencies =====
+AuthService ..> UserRepository
+AuthService ..> JwtProvider
+
+MealOrchestrationService ..> MealEntryRepository
+MealOrchestrationService ..> MealAnalysisRepository
+MealOrchestrationService ..> ObjectStorageClient
+MealOrchestrationService ..> MealAnalysisService
+MealOrchestrationService ..> NutritionService
+MealOrchestrationService ..> RecommendationService
+MealOrchestrationService ..> UserRepository
+
+MealAnalysisService ..> VisionAIClient
+
+NutritionService ..> ExternalNutritionApiClient
+
+RecipeService ..> RecipeRepository
+GroceryService ..> GroceryListRepository
+GroceryService ..> RecipeRepository
+
+' ===== Service -> Domain dependencies =====
+AuthService ..> User
+MealOrchestrationService ..> MealEntry
+MealOrchestrationService ..> MealAnalysis
+MealAnalysisService ..> DetectedIngredient
+NutritionService ..> IngredientNutrition
+NutritionService ..> NutritionTotals
+RecommendationService ..> Recommendation
+RecommendationService ..> MedicalProfile
+RecommendationService ..> DietaryGoal
+RecipeService ..> Recipe
+GroceryService ..> GroceryList
+
+@enduml
