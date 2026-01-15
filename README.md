@@ -20,10 +20,10 @@
 ![Sequence Diagram](docs/uml/sequence-diagram.png)
 
 ### UML - Communication Diagram 1 - Upload to Nutrition
-![Communication Diagram](docs/uml/communication-diagram1.png)
+![Communication Diagram](docs/uml/comm_part1.png)
 
 ### UML - Communication Diagram 2 - Recommendations to Results
-![Communication Diagram](docs/uml/communication-diagram2.png)
+![Communication Diagram](docs/uml/comm_part2.png)
 
 ### UML - Deployment Diagram
 ![Deployment Diagram](docs/uml/deployment-diagram.png)
