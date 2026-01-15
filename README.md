@@ -29,7 +29,7 @@
 ![Component Diagram](docs/uml/component-diagram.png)
 
 ### DFD - Level 0 Diagram
-![DFD Level 0 Diagram](docs/dfd/dfd-level-0.png)
+![DFD Level 0 Diagram](docs/dfd/dfd-level0.png)
 
 ### DFD - Level 1 Diagram
 ![DFD Level 1 Diagram](docs/dfd/dfd-level-1.png)
