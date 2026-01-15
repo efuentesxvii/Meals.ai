@@ -1,0 +1,39 @@
+@startuml drd_level0
+title DFD – Level 0 
+
+left to right direction
+skinparam shadowing false
+skinparam roundcorner 14
+skinparam defaultFontName Arial
+skinparam componentStyle rectangle
+skinparam ArrowThickness 1.2
+
+'--- External Entities ---
+rectangle "E1\nUser" as E1
+rectangle "E3\nAI Vision\nService" as E3
+rectangle "E4\nNutrition\nData API" as E4
+rectangle "E2\nAdmin" as E2
+
+'--- Single System Process (Level 0) ---
+component "P0\nMeals.AI Platform" as P0
+
+'--- Layout anchors (keeps it horizontal/clean) ---
+E3 -[hidden]down-> P0
+P0 -[hidden]down-> E2
+E1 -[hidden]right-> P0
+P0 -[hidden]right-> E4
+
+'--- Data Flows ---
+E1 --> P0 : Inputs\nCredentials; Profile/Medical; Preferences; Meal image
+P0 --> E1 : Outputs\nNutrition summary; Recommendations; History/Trends; Grocery list
+
+P0 --> E3 : Meal image
+E3 --> P0 : Detected ingredients\n+ confidence
+
+P0 --> E4 : Ingredient query\n(name + portion)
+E4 --> P0 : Nutrition facts\n(per ingredient + totals)
+
+E2 --> P0 : Admin actions\n(user/content mgmt)
+P0 --> E2 : Reports/logs\n+ metrics
+
+@enduml
