@@ -1,5 +1,11 @@
-### UML - Use Case Diagram
-![Use Case Diagram](docs/uml/use-case.png)
+### UML - Use Case 1 Diagram - Log Meal
+![Use Case Diagram](docs/uml/use-case-1.png)
+
+### UML - Use Case 2 Diagram - Generate Nutrition Facts
+![Use Case Diagram](docs/uml/use-case-2.png)
+
+### UML - Use Case 3 Diagram - Analyze Meals
+![Use Case Diagram](docs/uml/use-case-3.png)
 
 ### UML - Class Diagram
 ![Class Diagram](docs/uml/class-diagram.png)
@@ -20,7 +26,7 @@
 ![Component Diagram](docs/uml/component-diagram.png)
 
 ### DFD - Level 0 Diagram
-![DFD Level 0 Diagram](docs/dfd/dfd-level-0-context.png)
+![DFD Level 0 Diagram](docs/dfd/dfd-level-0.png)
 
 ### DFD - Level 1 Diagram
 ![DFD Level 1 Diagram](docs/dfd/dfd-level-1.png)
