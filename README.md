@@ -7,8 +7,11 @@
 ### UML - Use Case 3 Diagram - Analyze Meals
 ![Use Case Diagram](docs/uml/use-case-3.png)
 
-### UML - Class Diagram
-![Class Diagram](docs/uml/class-diagram.png)
+### UML - Class Diagram 1 - Domain Model
+![Class Diagram](docs/uml/class-diagram1.png)
+
+### UML - Class Diagram 1 - Application/Implementation
+![Class Diagram](docs/uml/class-diagram2.png)
 
 ### UML - Activity Diagram
 ![Activity Diagram](docs/uml/activity-diagram.png)
