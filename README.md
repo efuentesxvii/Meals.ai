@@ -39,3 +39,6 @@
 
 ### DFD - Level 2 Diagram
 ![DFD Level 2 Diagram](docs/dfd/dfd-level-2-meal-analysis.png)
+
+### Window Navigation Diagram
+![Window Navigation Diagram](docs/window-nav/window-nav-diagram.png)
