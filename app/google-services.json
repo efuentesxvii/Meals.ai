@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "533044860091",
+    "project_id": "mealsai-e25a3",
+    "storage_bucket": "mealsai-e25a3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533044860091:android:5b948108a0d8e28b80859e",
+        "android_client_info": {
+          "package_name": "com.mealsai.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBReTE301_J4g8JcKtEfExyEcC3TSFQ5F8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFBF5"
+    tools:context=".ui.plan.WeeklyPlanFragment">
+
+    <!-- Calendar Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly Meal Plan"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:drawableStart="@drawable/ic_calendar" 
+                android:drawablePadding="8dp"
+                app:drawableTint="#FF5722"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <!-- Date Navigator -->
+            <ImageView
+                android:id="@+id/btnPrevWeek"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="#555555"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvDateRange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jan 4 - Jan 10, 2026"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="@id/btnPrevWeek"
+                app:layout_constraintBottom_toBottomOf="@id/btnPrevWeek"
+                app:layout_constraintStart_toEndOf="@id/btnPrevWeek"
+                app:layout_constraintEnd_toStartOf="@id/btnNextWeek" />
+
+            <ImageView
+                android:id="@+id/btnNextWeek"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_arrow_back"
+                android:rotation="180" 
+                app:tint="#555555"
+                app:layout_constraintTop_toTopOf="@id/btnPrevWeek"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Day Selector -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDays"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tvDateRange"
+                tools:itemCount="7"
+                tools:listitem="@layout/item_day_selector" />
+                
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Empty State -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvEmptyState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:minHeight="200dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/cvCalendar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_calendar" 
+                android:background="@drawable/bg_circle_white_transparent"
+                android:padding="20dp"
+                android:backgroundTint="#FFE0B2"
+                app:tint="#FF5722"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="No Meals Planned Yet"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#333333" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Start by generating meal ideas and adding them to your plan"
+                android:gravity="center"
+                android:textColor="#757575"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    
+    <!-- Planned Meals List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPlannedMeals"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/cvCalendar"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
