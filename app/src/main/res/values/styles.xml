@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="FormLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#555555</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    
+    <style name="FormInput">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">52dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:background">@drawable/bg_input_field</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+
+    <style name="MealFilterChip" parent="Widget.MaterialComponents.Chip.Choice">
+    <item name="chipBackgroundColor">@color/chip_bg_light</item>
+    <item name="android:textColor">#101828</item>
+    <item name="chipStrokeColor">#D0D5DD</item>
+    <item name="chipStrokeWidth">1dp</item>
+    <item name="chipCornerRadius">16dp</item>
+</style>
+
+<style name="MealMetaText">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:textSize">13sp</item>
+    <item name="android:textColor">#757575</item>
+    <item name="android:drawablePadding">6dp</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:includeFontPadding">false</item>
+</style>
+
+
+
+<style name="RoundedTopImage" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSizeTopLeft">16dp</item>
+    <item name="cornerSizeTopRight">16dp</item>
+    <item name="cornerSizeBottomLeft">0dp</item>
+    <item name="cornerSizeBottomRight">0dp</item>
+</style>
+
+
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">#FF5722</item>
+        <item name="android:colorAccent">#FF5722</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/DatePickerButton</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/DatePickerButton</item>
+        <item name="buttonBarPositiveButtonStyle">@style/DatePickerButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DatePickerButton</item>
+    </style>
+
+    <style name="DatePickerButton" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#FF5722</item>
+    </style>
+</resources>

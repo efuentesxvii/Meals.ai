@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#FFFFFF">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="32dp">
+
+                <!-- Header Image -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp">
+
+                    <ImageView
+                        android:id="@+id/ivDetailImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_meal_dummy" />
+
+                    <!-- Chef Hat Icon -->
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="16dp"
+                        android:background="@drawable/bg_input_field"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_sparkles"
+                        app:tint="#FF5722"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- Close Button -->
+                    <ImageButton
+                        android:id="@+id/btnClose"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_margin="16dp"
+                        android:background="@drawable/bg_circle_white_cc"
+                        android:src="@drawable/ic_close"
+                        app:tint="#344054"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Content -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="24dp"
+                    android:paddingTop="24dp">
+
+                    <TextView
+                        android:id="@+id/tvDetailTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Herb-Grilled Chicken"
+                        android:textColor="#101828"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <!-- Stats Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                        <!-- Time -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_rounded_orange_light"
+                            android:backgroundTint="#FFF5EB"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Time"
+                                android:textColor="#C4320A"
+                                android:textSize="12sp"
+                                android:drawableStart="@drawable/ic_clock"
+                                android:drawablePadding="4dp"
+                                android:drawableTint="#C4320A"/>
+
+                            <TextView
+                                android:id="@+id/tvDetailTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="45 min"
+                                android:textColor="#101828"
+                                android:textStyle="bold"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+
+                        <!-- Servings -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginHorizontal="4dp"
+                            android:background="@drawable/bg_rounded_orange_light"
+                            android:backgroundTint="#FFF5EB"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Servings"
+                                android:textColor="#C4320A"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/tvDetailServings"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="4"
+                                android:textColor="#101828"
+                                android:textStyle="bold"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+
+                         <!-- Difficulty -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_rounded_orange_light"
+                            android:backgroundTint="#FFF5EB"
+                            android:orientation="vertical"
+                            android:padding="12dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Difficulty"
+                                android:textColor="#C4320A"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/tvDetailDifficulty"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="Medium"
+                                android:textColor="#101828"
+                                android:textStyle="bold"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Tags -->
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/cgDetailTags"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="20dp"
+                        android:background="#F2F4F7" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Nutrition Facts"
+                        android:textColor="#101828"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- Nutrition Grid -->
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:columnCount="2"
+                        android:rowCount="2">
+
+                        <!-- Item 1: Calories -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/bg_nutri_card"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_fire"
+                                app:tint="#FF5722"/>
+
+                             <TextView
+                                android:id="@+id/tvDetailCalories"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="280 kcal"
+                                android:textColor="#101828"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Calories"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+
+                        <!-- Item 2: Protein -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/bg_nutri_card"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_heart"
+                                app:tint="#E91E63"/>
+
+                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="38g"
+                                android:textColor="#101828"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Protein"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+
+                        <!-- Item 3: Carbs -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/bg_nutri_card"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_wheat"
+                                app:tint="#FFC107"/>
+
+                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="8g"
+                                android:textColor="#101828"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Carbs"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+
+                        <!-- Item 4: Fat -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_nutri_card"
+                            android:padding="16dp"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:src="@drawable/ic_water"
+                                app:tint="#03A9F4"/>
+
+                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="12g"
+                                android:textColor="#101828"
+                                android:textStyle="bold"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Fat"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+
+                    </GridLayout>
+
+                    <!-- Nutrient Table -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical"
+                        android:padding="16dp"
+                        android:backgroundTint="#FFF5EB"
+                        android:background="@drawable/bg_rounded_orange_light">
+                        
+                         <!-- Row 1 -->
+                        <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="horizontal">
+                             <TextView android:text="Dietary Fiber" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#475467"/>
+                             <TextView android:text="8g" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textColor="#101828"/>
+                        </LinearLayout>
+                        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E0E0E0" android:layout_marginVertical="8dp"/>
+                        
+                         <!-- Row 2 -->
+                        <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="horizontal">
+                             <TextView android:text="Sugars" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#475467"/>
+                             <TextView android:text="5g" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textColor="#101828"/>
+                        </LinearLayout>
+                         <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E0E0E0" android:layout_marginVertical="8dp"/>
+
+                         <!-- Row 3 -->
+                        <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="horizontal">
+                             <TextView android:text="Sodium" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#475467"/>
+                             <TextView android:text="420mg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textColor="#101828"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="Recommendations"
+                        android:textColor="#101828"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                        
+                    <!-- Rec Card -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:padding="16dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/bg_rounded_orange_light"
+                        android:backgroundTint="#FFF5EB">
+                        <TextView android:text="Pair with leafy greens" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#101828"/>
+                         <TextView android:text="Add a side salad to boost fiber and vitamin content for a more complete meal." android:layout_marginTop="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="#475467"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

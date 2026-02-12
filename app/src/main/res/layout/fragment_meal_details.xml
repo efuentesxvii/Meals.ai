@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".ui.details.MealDetailsFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="#FFFFFF">
+
+            <ImageView
+                android:id="@+id/ivMealImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_collapseMode="parallax" />
+                
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_arrow_back">
+                <!-- Assuming ic_arrow_back or close icon, image shows 'X' close button on top right, 
+                     usually handled by menu item or custom view. I'll put a close button in a relative layout over the image if I wasn't using CollapsingToolbar, 
+                     but CollapsingToolbar is cleaner. The image shows a floating X. I'll stick to standard toolbar nav icon for 'Back' which is 'X' in a modal. -->
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Herb-Grilled Chicken"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Quick Info Row -->
+            <LinearLayout
+                android:id="@+id/llQuickInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+                <!-- Time -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_rounded_orange_light"
+                    android:padding="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time"
+                        android:textSize="12sp"
+                        android:textColor="#FF5722"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="45 min"
+                        android:textStyle="bold"
+                        android:textColor="#333333"/>
+                </LinearLayout>
+
+                <!-- Servings -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="8dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_rounded_orange_light"
+                    android:padding="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Servings"
+                        android:textSize="12sp"
+                        android:textColor="#FF5722"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="4"
+                        android:textStyle="bold"
+                        android:textColor="#333333"/>
+                </LinearLayout>
+                
+                <!-- Difficulty -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_rounded_orange_light"
+                    android:padding="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Difficulty"
+                        android:textSize="12sp"
+                        android:textColor="#FF5722"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Medium"
+                        android:textStyle="bold"
+                        android:textColor="#333333"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Tags -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cgTags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:chipSpacingHorizontal="8dp"
+                app:layout_constraintTop_toBottomOf="@id/llQuickInfo">
+                
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="American"
+                    android:textColor="#FF5722"
+                    app:chipBackgroundColor="#FFF3E0"
+                    app:chipStrokeWidth="0dp"/>
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gluten-Free"
+                    android:textColor="#4CAF50"
+                    app:chipBackgroundColor="#E8F5E9"
+                    app:chipStrokeWidth="0dp"/>
+                 <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dairy-Free"
+                    android:textColor="#4CAF50"
+                    app:chipBackgroundColor="#E8F5E9"
+                    app:chipStrokeWidth="0dp"/>
+                 <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Paleo"
+                    android:textColor="#4CAF50"
+                    app:chipBackgroundColor="#E8F5E9"
+                    app:chipStrokeWidth="0dp"/>
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- Divider -->
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="#EEEEEE"
+                app:layout_constraintTop_toBottomOf="@id/cgTags" />
+
+            <!-- Nutrition Facts -->
+            <TextView
+                android:id="@+id/lblNutrition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Nutrition Facts"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                app:layout_constraintTop_toBottomOf="@id/divider1"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <GridLayout
+                android:id="@+id/glMacros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:columnCount="2"
+                android:rowCount="2"
+                app:layout_constraintTop_toBottomOf="@id/lblNutrition">
+
+                <!-- Calories -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_input_field"
+                    android:padding="16dp">
+                    <ImageView android:id="@+id/ivCal" android:src="@drawable/ic_fire" app:tint="#FF5722" android:layout_width="24dp" android:layout_height="24dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                    <TextView android:text="280 kcal" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@id/ivCal" app:layout_constraintStart_toStartOf="parent"/>
+                    <TextView android:text="Calories" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/ivCal" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="28dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Protein -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_input_field"
+                    android:padding="16dp">
+                    <ImageView android:id="@+id/ivProt" android:src="@drawable/ic_user" app:tint="#E91E63" android:layout_width="24dp" android:layout_height="24dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                     <TextView android:text="38g" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@id/ivProt" app:layout_constraintStart_toStartOf="parent"/>
+                    <TextView android:text="Protein" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/ivProt" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="28dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Carbs -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input_field"
+                    android:padding="16dp">
+                    <ImageView android:id="@+id/ivCarb" android:src="@drawable/ic_sparkles" app:tint="#FFC107" android:layout_width="24dp" android:layout_height="24dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                     <TextView android:text="8g" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@id/ivCarb" app:layout_constraintStart_toStartOf="parent"/>
+                    <TextView android:text="Carbs" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/ivCarb" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="28dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Fat -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_input_field"
+                    android:padding="16dp">
+                    <ImageView android:id="@+id/ivFat" android:src="@drawable/ic_water" app:tint="#03A9F4" android:layout_width="24dp" android:layout_height="24dp" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+                    <TextView android:text="12g" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@id/ivFat" app:layout_constraintStart_toStartOf="parent"/>
+                    <TextView android:text="Fat" android:textSize="12sp" android:layout_width="wrap_content" android:layout_height="wrap_content" app:layout_constraintTop_toBottomOf="@id/ivFat" app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="28dp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </GridLayout>
+
+            <!-- Detailed Table -->
+            <LinearLayout
+                android:id="@+id/llNutDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_rounded_orange_light"
+                android:padding="16dp"
+                app:layout_constraintTop_toBottomOf="@id/glMacros">
+                
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp">
+                    <TextView android:text="Dietary Fiber" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#333333"/>
+                    <TextView android:text="8g" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textColor="#333333"/>
+                </LinearLayout>
+                <View android:background="#E0E0E0" android:layout_height="1dp" android:layout_width="match_parent" android:layout_marginBottom="8dp"/>
+                 <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp">
+                    <TextView android:text="Sugars" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#333333"/>
+                    <TextView android:text="5g" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textColor="#333333"/>
+                </LinearLayout>
+                <View android:background="#E0E0E0" android:layout_height="1dp" android:layout_width="match_parent" android:layout_marginBottom="8dp"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp">
+                    <TextView android:text="Sodium" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#333333"/>
+                    <TextView android:text="420mg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textColor="#333333"/>
+                </LinearLayout>
+                 <View android:background="#E0E0E0" android:layout_height="1dp" android:layout_width="match_parent" android:layout_marginBottom="8dp"/>
+                <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                    <TextView android:text="Cholesterol" android:layout_weight="1" android:layout_width="0dp" android:layout_height="wrap_content" android:textColor="#333333"/>
+                    <TextView android:text="65mg" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" android:textColor="#333333"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Recommendations -->
+            <TextView
+                android:id="@+id/lblRecs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Recommendations"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                app:layout_constraintTop_toBottomOf="@id/llNutDetails"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone" />
+
+             <LinearLayout
+                android:id="@+id/llRecs"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/lblRecs">
+                
+                 <!-- Rec 1 -->
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:background="@drawable/bg_rounded_orange_light"
+                     android:padding="16dp"
+                     android:orientation="vertical"
+                     android:layout_marginBottom="12dp">
+                     <TextView android:text="Pair with leafy greens" android:textStyle="bold" android:textColor="#333333" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                     <TextView android:text="Add a side salad to boost fiber and vitamin content for a more complete meal." android:textColor="#555555" android:layout_marginTop="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                 </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_bookmark_border"
+        app:layout_anchor="@id/appBarLayout" 
+        app:layout_anchorGravity="bottom|end"
+        android:visibility="gone"/> 
+        <!-- Image shows no FAB, but standard details screen might have one. I'll omit it or keep it hidden. -->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
