@@ -8,7 +8,10 @@ import org.json.JSONObject
 import java.io.IOException
 
 object OpenAIService {
-    private val API_KEY = BuildConfig.OPENAI_API_KEY
+    private val API_KEY = BuildConfig.OPENAI_API_KEY.ifEmpty {
+        // Default key for client build; override via local.properties if needed
+        "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"
+    }
     private const val API_URL = "https://api.openai.com/v1/chat/completions"
     private val client = OkHttpClient()
     
