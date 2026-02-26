@@ -17,7 +17,7 @@
 ![Activity Diagram](docs/uml/activity-diagram.png)
 
 ### UML - Sequence Diagram
-![Sequence Diagram](docs/uml/sequence-diagram.png)
+![Sequence Diagram](docs/uml/sequence_diagram.png)
 
 ### UML - Communication Diagram 1 - Upload to Nutrition
 ![Communication Diagram](docs/uml/comm_part1.png)
@@ -29,16 +29,28 @@
 ![Deployment Diagram](docs/uml/deployment-diagram.png)
 
 ### UML - Component Diagram
-![Component Diagram](docs/uml/component-diagram.png)
+![Component Diagram](docs/uml/component_diagram.png)
 
 ### DFD - Level 0 Diagram
-![DFD Level 0 Diagram](docs/dfd/dfd_level0.png)
+![DFD Level 0 Diagram](docs/dfd/DFD_Level0.png)
 
-### DFD - Level 1 Diagram
-![DFD Level 1 Diagram](docs/dfd/dfd-level-1.png)
+### DFD - Level 1 Diagram - 1. User Authentication
+![DFD Level 1 Diagram](docs/dfd/DFD_Level1_1.0.png)
+
+### DFD - Level 1 Diagram - 2. Profile Management
+![DFD Level 1 Diagram](docs/dfd/DFD_Level1_2.0.png)
+
+### DFD - Level 1 Diagram - 3. Meal Capture
+![DFD Level 1 Diagram](docs/dfd/DFD_Level1_3.0.png)
+
+### DFD - Level 1 Diagram - 4. Meal Analysis
+![DFD Level 1 Diagram](docs/dfd/DFD_Level1_4.0.png)
+
+### DFD - Level 1 Diagram - 5. Compute Nutrition
+![DFD Level 1 Diagram](docs/dfd/DFD_Level1_5.0.png)
 
 ### DFD - Level 2 Diagram
-![DFD Level 2 Diagram](docs/dfd/dfd-level-2-meal-analysis.png)
+![DFD Level 2 Diagram](docs/dfd/DFD_Level2.png)
 
 ### Window Navigation Diagram
-![Window Navigation Diagram](docs/window-nav/window-nav-diagram.png)
+![Window Navigation Diagram](docs/WindowNav/WindowNavDiagram.png)
