@@ -1,0 +1,83 @@
+@startuml WindowNavDiagram
+top to bottom direction
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam RectangleBackgroundColor #F4CCCC
+skinparam RectangleBorderColor #B85450
+skinparam ArrowColor #444444
+
+' =========================================================
+' MAIN NAVIGATION (Tree Root)
+' =========================================================
+rectangle "<<window>>\nMain App\nBottom Navigation" as MainApp
+
+rectangle "<<window>>\nGenerate" as Generate
+rectangle "<<window>>\nWeekly Plan" as Plan
+rectangle "<<window>>\nSaved Meals" as Saved
+rectangle "<<window>>\nGrocery List" as Grocery
+
+MainApp --> Generate    : Tap Generate
+MainApp --> Plan        : Tap Plan
+MainApp --> Saved       : Tap Saved
+MainApp --> Grocery     : Tap Grocery
+
+
+' =========================================================
+' GENERATE TAB (AI Tool + Photo)
+' =========================================================
+rectangle "<<form>>\nMeal Filters" as Filters
+rectangle "<<window>>\nAI Processing" as AI Processing
+rectangle "<<window>>\nGenerated Meals\nResults List" as ResultsList
+rectangle "<<window>>\nMeal Details" as Details
+rectangle "<<window>>\nPlan Meal\nDialog" as PlanMeal
+
+Generate --> Filters : Open Filters
+Generate --> AIProcessing : Apply Filters
+AIProcessing --> ResultsList : Show Results
+
+ResultsList --> Details : Open Details
+Details --> ResultsList : Back
+
+Details --> PlanMeal : Plan Meal
+PlanMeal --> Plan : Add to Plan
+PlanMeal --> Details : Cancel
+
+ResultsList --> Saved : Save Meal / View Saved
+
+' Photo feature flow
+Generate --> Camera : Photo Feature
+Camera --> ConfirmPhoto : Capture
+ConfirmPhoto --> Camera : Retake
+ConfirmPhoto --> PhotoAI : Confirm
+PhotoAI --> PhotoRecs : Results
+PhotoRecs --> Details : View Meal Details
+PhotoRecs --> PlanMeal : Plan This Meal
+PhotoRecs --> ResultsList : Back to Results
+
+
+' =========================================================
+' PLAN TAB (Planning affects Grocery)
+' =========================================================
+rectangle "<<window>>\nPlan Day View" as PlanDay
+
+Plan --> PlanDay : Select Day
+PlanDay --> Details : Open Planned Meal
+Plan --> Grocery : Update Grocery Items
+
+
+' =========================================================
+' GROCERY TAB (List management)
+' =========================================================
+rectangle "<<form>>\nGrocery Item Details\nEdit Delete" as GroceryItem
+
+Grocery --> GroceryItem : Select Item
+GroceryItem --> Grocery : Back
+
+
+' =========================================================
+' SAVED TAB (Saved -> Details)
+' =========================================================
+Saved --> Details : Open Saved Meal
+Details --> Saved : Back to Saved
+
+@enduml
